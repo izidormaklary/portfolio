@@ -1,9 +1,11 @@
-import React from 'react';
+import React, {createRef} from 'react';
 import axios from 'axios';
 import ProjectModal from "./ProjectModal";
 import {useState, useEffect} from "react";
 
 const Projects = ({projectStatus, setProjectStatus}) => {
+
+    const tagsRef = createRef()
     const [projects, setProjects] = useState([])
     const [tags, setTags] = useState([])
     const [tag, setTag] = useState("")
@@ -31,13 +33,15 @@ const Projects = ({projectStatus, setProjectStatus}) => {
     }, [tag]);
     if (!projects) return null;
 
+
     return (
         <>
             <div className={"tagsContainer " + tagStatus}
-                 onClick={() => {
+                 ref={tagsRef}
+                 onClick={(el) => {
                      if (!tagStatus) {
                          setTagStatus("active");
-                         setProjectStatus("shiftDown")
+                         setProjectStatus("shiftDown");
                      }
                  }}
             >

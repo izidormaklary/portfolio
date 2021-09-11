@@ -4,6 +4,10 @@
   --nav-sm-font: 40px ;
   --modal-pad: 30px;
   --modal-width:700px;
+  --about-width:1000px;
+  --nav-filter-h:140px;
+  --nav-h:60px;
+  --shift-project: 200px;
 }
 
 * {
@@ -49,7 +53,7 @@
 .navContainer.shrink {
   position: sticky;
   top: 0;
-  height: 60px;
+  height: var(--nav-h);
 }
 .navContainer.shrink .navElement {
   transition: 0.4s;
@@ -64,8 +68,8 @@
 }
 
 .projectsContainer {
+  mask-image: linear-gradient(to bottom, transparent, black 10px);
   padding-bottom: 10px;
-  border-top: rgba(0, 0, 0, 0.38) solid 2px;
   transition: 0.6s;
   position: fixed;
   top: 100vh;
@@ -82,10 +86,10 @@
   overflow: scroll;
 }
 .projectsContainer.mounted {
-  top: 140px;
+  top: var(--nav-filter-h);
 }
 .projectsContainer.shiftDown {
-  top: 200px;
+  top: var(--shift-project);
 }
 .projectsContainer .projectSmall {
   cursor: pointer;
@@ -212,6 +216,28 @@
 .modalContainer .modalProject .smallTitle {
   margin: 20px;
 }
+
+.aboutContainer {
+  overflow: scroll;
+  width: 100vw;
+  transition: 0.6s;
+  height: calc(100vh - var(--nav-h) - 10px);
+  position: fixed;
+  top: 100vh;
+  mask-image: linear-gradient(to bottom, transparent, black 10px);
+}
+.aboutContainer.mounted {
+  top: var(--nav-h);
+}
+.aboutContainer .aboutPage {
+  border-radius: 5px;
+  height: 2800px;
+  background-color: rgba(255, 255, 255, 0.85);
+  margin: auto;
+  margin-top: 20px;
+  width: var(--about-width);
+}
+
 @media (max-width: 600px) {
   :root {
     --project-card-title: 20px;
@@ -219,6 +245,8 @@
     --nav-sm-font: 24px;
     --modal-width: 100%;
     --modal-pad: 15px;
+    --nav-filter-h: 100px;
+    --shift-project: 400px;
   }
 
   .navContainer {
@@ -245,11 +273,7 @@
     grid-template-rows: repeat(auto-fill, 240px);
     gap: 10px;
   }
-  .projectsContainer.mounted {
-    top: 100px;
-  }
   .projectsContainer.shiftDown {
-    top: 400px;
     height: calc(100vh - 450px);
   }
   .projectsContainer .projectSmall {

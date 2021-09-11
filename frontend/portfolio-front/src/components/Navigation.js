@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 
 
-const Navigation = ({setPage, page, setProjectStatus}) => {
+const Navigation = ({setPage, page, setProjectStatus, setAboutStatus}) => {
 
     const [navStatus, setNavStatus] = useState("grow");
     // const navSize = page ? "shrink" : "grow";
@@ -14,10 +14,13 @@ const Navigation = ({setPage, page, setProjectStatus}) => {
                 // and going to a page
                 if (route) {
                     if (route !== "projects") setProjectStatus("")
+                    if (route !== "about") setAboutStatus("")
                     setTimeout(() => setPage(route), 600)
                 // or going to the homepage
                 } else {
                     if (page === "projects") setProjectStatus("")
+                    if (page === "about") setAboutStatus("")
+
                     setNavStatus("grow")
                     setTimeout(() => setPage(route), 600)
                 }

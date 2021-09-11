@@ -19,6 +19,10 @@ $nav-align: row;
   --nav-sm-font: 40px ;
   --modal-pad: 30px;
   --modal-width:700px;
+  --about-width:1000px;
+  --nav-filter-h:140px;
+  --nav-h:60px;
+  --shift-project: 200px;
 }
 
 * {
@@ -37,6 +41,7 @@ body {
   background: linear-gradient(290deg, rgba(141, 104, 179, 0.41) 0%, rgba(141, 104, 179, 0.12) 100%),
   linear-gradient(70deg, rgba(248, 128, 128, 0.31) 0%, transparent 50%, rgba(127, 158, 204, 0.25) 100%),
   #FFFFFF;
+  
 }
 
 
@@ -76,7 +81,7 @@ body {
   &.shrink {
     position: sticky;
     top: 0;
-    height: 60px;
+    height: var(--nav-h);
     //background: rgba(255, 255, 255, 0.45);
     .navElement {
       transition: 0.4s;
@@ -96,8 +101,10 @@ body {
 }
 
 .projectsContainer {
+  mask-image: linear-gradient( to bottom, transparent, rgb(0, 0, 0) 10px );
+
   padding-bottom: 10px;
-  border-top: rgba(0, 0, 0, 0.38) solid 2px;
+  //border-top: rgba(0, 0, 0, 0.38) solid 2px;
   transition: 0.6s;
   position: fixed;
   top: 100vh;
@@ -116,11 +123,11 @@ body {
   overflow: scroll;
 
   &.mounted {
-    top: 140px;
+    top: var(--nav-filter-h);
   }
 
   &.shiftDown {
-    top: 200px
+    top: var(--shift-project);
   }
 
   .projectSmall {
@@ -282,11 +289,30 @@ body {
     }
   }
 
-  &.inactive {
-
-  }
 }
+.aboutContainer{
+  overflow: scroll;
+  width: 100vw;
+  transition: 0.6s;
+  height:calc(100vh - var(--nav-h) - 10px);
+  position: fixed;
+  top:100vh;
+  mask-image: linear-gradient( to bottom, transparent, rgb(0, 0, 0) 10px );
 
+  &.mounted{
+    top:var(--nav-h);
+  }
+  .aboutPage{
+    border-radius: 5px;
+
+    height: 2800px;
+    background-color: rgba(255, 255, 255, 0.85);
+    margin: auto;
+    margin-top: 20px;
+    width: var(--about-width);
+  }
+
+}
 @media (max-width: $bp-xsm) {
   :root {
     --project-card-title: 20px;
@@ -294,6 +320,8 @@ body {
     --nav-sm-font: 24px;
     --modal-width: 100%;
     --modal-pad: 15px;
+    --nav-filter-h: 100px;
+    --shift-project: 400px;
   }
   .navContainer {
     flex-direction: column;
@@ -321,12 +349,8 @@ body {
     grid-template-columns: repeat(auto-fit, 250px);
     grid-template-rows:  repeat(auto-fill, 240px);
     gap: 10px;
-    &.mounted {
-      top: 100px;
-    }
 
     &.shiftDown {
-      top: 400px;
       height: calc(100vh - 450px);
     }
 

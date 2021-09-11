@@ -1,7 +1,7 @@
 from .models import Project
 from rest_framework import viewsets
 from rest_framework import permissions
-from .serializers import ProjectSerializer
+from .serializers import ProjectSerializer, ProjectPreviewSerializer
 from rest_framework.decorators import api_view, renderer_classes
 from rest_framework.response import Response
 from rest_framework.renderers import JSONRenderer
@@ -19,7 +19,7 @@ class ProjectViewSet(viewsets.ModelViewSet):
 @renderer_classes([JSONRenderer])
 def project_all(request):
     projects = Project.objects.all()
-    serializer = ProjectSerializer(projects, many=True)
+    serializer = ProjectPreviewSerializer(projects, many=True)
     return Response(serializer.data)
 
 
@@ -48,5 +48,5 @@ def tags(request):
 @renderer_classes([JSONRenderer])
 def with_tag(request, tag):
     projects = Project.objects.filter(tags__icontains=tag)
-    serializer = ProjectSerializer(projects, many=True)
+    serializer = ProjectPreviewSerializer(projects, many=True)
     return Response(serializer.data)

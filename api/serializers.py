@@ -15,8 +15,21 @@ class ProjectSerializer(serializers.HyperlinkedModelSerializer):
                   'github_url',
                   'host_url',
                   'prev_image',
+                  'display_image',
                   'languages',
                   'tags',
-                  'description']
+                  'short_description',
+                  'long_description',
+                  ]
 
 
+class ProjectPreviewSerializer(serializers.HyperlinkedModelSerializer):
+    id = serializers.IntegerField(read_only=True)
+
+    class Meta:
+        model = Project
+        fields = ['id',
+                  'name',
+                  'prev_image',
+                  'short_description',
+                  ]

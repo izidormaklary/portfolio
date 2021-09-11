@@ -1,0 +1,305 @@
+:root {
+  --nav-bg-font: 55px;
+  --project-card-title: 22px;
+  --nav-sm-font: 40px ;
+  --modal-pad: 30px;
+  --modal-width:700px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.App {
+  overflow: scroll;
+  height: 100vh;
+  width: 100vw;
+  background: linear-gradient(290deg, rgba(141, 104, 179, 0.41) 0%, rgba(141, 104, 179, 0.12) 100%), linear-gradient(70deg, rgba(248, 128, 128, 0.31) 0%, transparent 50%, rgba(127, 158, 204, 0.25) 100%), #FFFFFF;
+}
+
+.navContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  transition: 0.6s;
+}
+.navContainer .navElement {
+  transition: 0.6s;
+  background: rgba(65, 65, 65, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #f1f1f1;
+  font-size: var(--nav-bg-font);
+  width: 33.3333333333%;
+}
+.navContainer .navElement.clickable {
+  cursor: pointer;
+}
+.navContainer .navElement.clickable:hover {
+  box-shadow: #FFFFFF 0 0 100px 20px;
+  z-index: 1;
+  background: rgba(65, 65, 65, 0.36);
+}
+.navContainer.grow {
+  height: 100%;
+}
+.navContainer.shrink {
+  position: sticky;
+  top: 0;
+  height: 60px;
+}
+.navContainer.shrink .navElement {
+  transition: 0.4s;
+  background: rgba(65, 65, 65, 0);
+  color: #3e3e3e;
+  font-size: var(--nav-sm-font);
+  cursor: pointer;
+}
+.navContainer.shrink .navElement:hover {
+  box-shadow: none;
+  background: rgba(152, 152, 152, 0.29);
+}
+
+.projectsContainer {
+  padding-bottom: 10px;
+  border-top: rgba(0, 0, 0, 0.38) solid 2px;
+  transition: 0.6s;
+  position: fixed;
+  top: 100vh;
+  height: calc(100vh - 175px);
+  bottom: 0;
+  padding-top: 20px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 250px);
+  grid-template-rows: repeat(auto-fill, 240px);
+  gap: 50px;
+  margin-bottom: 180px;
+  justify-content: center;
+  overflow: scroll;
+}
+.projectsContainer.mounted {
+  top: 140px;
+}
+.projectsContainer.shiftDown {
+  top: 200px;
+}
+.projectsContainer .projectSmall {
+  cursor: pointer;
+  border-radius: 80px 80px 10px 10px;
+  background-color: rgba(255, 255, 255, 0.75);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: 0.5s;
+  height: 235px;
+}
+.projectsContainer .projectSmall .previewImage {
+  transition: 0.5s;
+  width: 100%;
+}
+.projectsContainer .projectSmall .projectTitle {
+  font-size: var(--project-card-title);
+  margin-top: -15px;
+  padding: 35px 5px 15px 5px;
+  transition: 0.5s;
+}
+.projectsContainer .projectSmall .projectDescription {
+  padding: 5px;
+  transition: 0.5s;
+}
+.projectsContainer .projectSmall:hover {
+  border-radius: 10px;
+}
+.projectsContainer .projectSmall:hover .previewImage, .projectsContainer .projectSmall:hover .projectTitle, .projectsContainer .projectSmall:hover .projectDescription {
+  transform: translate(0, -170%);
+}
+
+.tagsContainer {
+  font-size: 18px;
+  transition: 0.5s;
+  position: relative;
+  top: 20px;
+  right: 10px;
+  float: right;
+  width: 150px;
+  background-color: rgba(255, 255, 255, 0.38);
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
+  cursor: pointer;
+}
+.tagsContainer:hover:not(.active) {
+  background-color: rgba(255, 255, 255, 0.92);
+}
+.tagsContainer .tag, .tagsContainer .close {
+  overflow: hidden;
+  width: 0;
+  transition: 0.3s;
+  opacity: 0;
+}
+.tagsContainer.active {
+  right: revert;
+  margin: 10px;
+  float: revert;
+  cursor: revert;
+  width: auto;
+  flex-wrap: wrap;
+  height: revert;
+  justify-content: stretch;
+  background-color: transparent;
+}
+.tagsContainer.active .tag, .tagsContainer.active .close {
+  background-color: rgba(255, 255, 255, 0.75);
+  margin: 5px;
+  padding: 8px;
+  border-radius: 4px;
+  opacity: 1;
+  cursor: pointer;
+  width: revert;
+}
+.tagsContainer.active .tag.clicked, .tagsContainer.active .close.clicked {
+  background-color: rgba(157, 156, 156, 0.84);
+}
+.tagsContainer.active .close {
+  background-color: #F880804F;
+}
+.tagsContainer.active .close:hover {
+  background-color: rgba(174, 94, 94, 0.7);
+}
+
+.modalContainer {
+  overflow-x: scroll;
+  transition: 0.6s;
+  position: fixed;
+  top: 0;
+  height: 100vh;
+  width: 100vw;
+  cursor: w-resize;
+  backdrop-filter: blur(0px);
+}
+.modalContainer.mounted {
+  backdrop-filter: blur(6px);
+}
+.modalContainer.mounted .modalProject {
+  margin-top: 100px;
+}
+.modalContainer .modalProject {
+  border-radius: 5px;
+  transition: 0.5s;
+  cursor: default;
+  padding: var(--modal-pad);
+  width: calc( var(--modal-width) - (2 * var(--modal-pad)) );
+  margin: auto;
+  margin-top: 120vh;
+  background-color: rgba(255, 255, 255, 0.82);
+}
+.modalContainer .modalProject .modalCover {
+  width: 100%;
+}
+.modalContainer .modalProject .modalName {
+  text-align: center;
+  margin: 50px;
+}
+.modalContainer .modalProject .modalDesc {
+  font-size: 20px;
+}
+.modalContainer .modalProject .smallTitle {
+  margin: 20px;
+}
+@media (max-width: 600px) {
+  :root {
+    --project-card-title: 20px;
+    --nav-bg-font: 40px;
+    --nav-sm-font: 24px;
+    --modal-width: 100%;
+    --modal-pad: 15px;
+  }
+
+  .navContainer {
+    flex-direction: column;
+  }
+  .navContainer .navElement {
+    width: 100%;
+    height: 33.3333333333%;
+  }
+  .navContainer.shrink {
+    height: 50px;
+    background: rgba(132, 105, 244, 0.45);
+  }
+  .navContainer.shrink .navElement {
+    height: 100%;
+  }
+  .navContainer.shrink .navElement.clickable {
+    display: none;
+  }
+
+  .projectsContainer {
+    height: calc(100vh - 145px);
+    grid-template-columns: repeat(auto-fit, 250px);
+    grid-template-rows: repeat(auto-fill, 240px);
+    gap: 10px;
+  }
+  .projectsContainer.mounted {
+    top: 100px;
+  }
+  .projectsContainer.shiftDown {
+    top: 400px;
+    height: calc(100vh - 450px);
+  }
+  .projectsContainer .projectSmall {
+    height: 230px;
+  }
+  .projectsContainer .projectSmall .previewImage {
+    transition: 0.5s;
+    width: 100%;
+  }
+
+  .tagsContainer {
+    top: 10px;
+    width: 150px;
+    background-color: rgba(255, 255, 255, 0.53);
+    height: 30px;
+  }
+  .tagsContainer .tagTitle {
+    font-size: 20px;
+  }
+
+  .modalContainer .modalProject .modalName {
+    text-align: center;
+    margin: 20px 0 20px 0;
+  }
+  .modalContainer .modalProject .modalDesc {
+    font-size: 18px;
+  }
+  .modalContainer .modalProject .smallTitle {
+    margin: 20px;
+  }
+}
+@media (min-width: 600px) and (max-width: 800px) {
+  :root {
+    --nav-bg-font: 32px;
+    --nav-sm-font: 28px;
+    --modal-width: 100%;
+    --modal-pad: 15px;
+  }
+}
+@media (min-width: 600px) and (max-width: 800px) and (min-width: 700px) {
+  :root {
+    --modal-pad: 30px;
+    --modal-width:700px;
+  }
+}
+@media (min-width: 800px) and (max-width: 1200px) {
+  :root {
+    --nav-sm-font: 32px;
+    --nav-bg-font: 42px;
+  }
+}
+
+/*# sourceMappingURL=App.css.map */

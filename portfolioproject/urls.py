@@ -10,6 +10,6 @@ def render_react(request):
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('api.urls')),
-    re_path("r", render_react)
+    path('api/', include('api.urls')),
+    re_path("", render_react)
 ]

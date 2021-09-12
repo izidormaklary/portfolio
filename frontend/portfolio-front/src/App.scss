@@ -23,7 +23,7 @@ $nav-align: row;
   --nav-filter-h: 140px;
   --nav-h: 60px;
   --shift-project: 200px;
-  --shift-layers:0px;
+  --shift-layers: 0px;
 }
 
 * {
@@ -37,7 +37,8 @@ body {
 
 
 .App {
-  overflow: scroll;
+  z-index: -1;
+  overflow: hidden;
   height: 100vh;
   width: 100vw;
   background: linear-gradient(290deg, rgba(141, 104, 179, 0.41) 0%, rgba(141, 104, 179, 0.12) 100%),
@@ -299,7 +300,7 @@ body {
   overflow: scroll;
   width: 100vw;
   transition: 0.6s;
-  height: calc(100vh - var(--nav-h) - 10px);
+  height: calc(90vh - var(--nav-h) - 10px);
   position: fixed;
   top: 100vh;
   mask-image: linear-gradient(to bottom, transparent, rgb(0, 0, 0) 10px);
@@ -319,12 +320,16 @@ body {
     margin-top: 20px;
     width: 100vw;
     max-width: var(--about-width);
+
     .introduction {
 
       display: flex;
       flex-direction: row;
+      flex-wrap: wrap;
       align-items: center;
       justify-content: space-evenly;
+      gap: 20px;
+
       .text {
         font-size: 22px;
         line-height: 30px;
@@ -337,8 +342,34 @@ body {
 
       .profilePict {
         width: 150px;
+      }
 
+      .buttons {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+        .link {
+          transition: 400ms;
+          border-radius: 2px;
+          margin: 5px;
+          padding: 10px;
+          white-space: nowrap;
+          color: #f1f1f1;
+          text-decoration: none;
 
+          &.linkedIn {
+            background: #5c82f5;
+          }
+
+          &.github {
+            background: #252525;
+
+          }
+
+          &:hover {
+            background: rgba(114, 114, 114, 0.94);
+          }
+        }
       }
     }
   }
@@ -351,8 +382,8 @@ body {
   width: 100%;
   position: relative;
 
-  -webkit-aspect-ratio:5/1;
-  aspect-ratio:5/1;
+  -webkit-aspect-ratio: 5/1;
+  aspect-ratio: 5/1;
   left: 0;
   top: 0;
   box-sizing: border-box;
@@ -366,29 +397,34 @@ body {
     left: 0;
 
   }
-  #profile_pict{
+
+  #profile_pict {
     //aspect-ratio:9/1;
     width: 100px;
-    left:250px;
+    left: 250px;
   }
-  #layer1{
-    aspect-ratio:16/1;
-    width:110%;
-    left: calc(-3px + var(--shift-layers)/2)
+
+  #layer1 {
+    aspect-ratio: 16/1;
+    width: 110%;
+    left: calc(-3px + var(--shift-layers) / 2)
   }
-  #layer2{
-    aspect-ratio:9/1;
-    width:120%;
-    left: calc(-3px + var(--shift-layers)*1)
+
+  #layer2 {
+    aspect-ratio: 9/1;
+    width: 120%;
+    left: calc(-3px + var(--shift-layers) * 1)
   }
-  #layer3{
-    aspect-ratio:7/1;
+
+  #layer3 {
+    aspect-ratio: 7/1;
     //bottom: -11%;
-    width:130%;
-    left: calc(-3px + var(--shift-layers)*2);
+    width: 130%;
+    left: calc(-3px + var(--shift-layers) * 2);
   }
 }
-#images{
+
+#images {
   //position: fixed;
   transform: scaleY(-1);
 }
@@ -402,10 +438,12 @@ body {
     --modal-pad: 15px;
     --nav-filter-h: 100px;
     --shift-project: 400px;
-    --nav-h:50px ;
+    --nav-h: 50px;
   }
 
-
+  .App{
+    height: 90vh;
+  }
   .navContainer {
     flex-direction: column;
     justify-content: space-between;
@@ -489,25 +527,29 @@ body {
     }
   }
 }
+
 @media (max-width: $bp-phone) {
-  #images{
-    margin-bottom:50%;
+  #images {
+    margin-bottom: 50%;
 
   }
-  .aboutContainer{
+
+  .aboutContainer {
     .aboutPage {
       margin-top: 0 !important;
-    .introduction{
-      margin-top: 100px;
-    }
+
+      .introduction {
+        margin-top: 100px;
+      }
     }
 
 
   }
-  #images2{
-    display:none;
+  #images2 {
+    display: none;
   }
 }
+
 @media (min-width: $bp-xsm) and (max-width: $bp-sm) {
   :root {
     --nav-bg-font: 32px;

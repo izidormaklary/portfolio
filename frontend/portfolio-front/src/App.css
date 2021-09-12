@@ -8,7 +8,7 @@
   --nav-filter-h: 140px;
   --nav-h: 60px;
   --shift-project: 200px;
-  --shift-layers:0px;
+  --shift-layers: 0px;
 }
 
 * {
@@ -17,7 +17,8 @@
 }
 
 .App {
-  overflow: scroll;
+  z-index: -1;
+  overflow: hidden;
   height: 100vh;
   width: 100vw;
   background: linear-gradient(290deg, rgba(141, 104, 179, 0.41) 0%, rgba(141, 104, 179, 0.12) 100%), linear-gradient(70deg, rgba(248, 128, 128, 0.31) 0%, transparent 50%, rgba(127, 158, 204, 0.25) 100%), #FFFFFF;
@@ -225,7 +226,7 @@
   overflow: scroll;
   width: 100vw;
   transition: 0.6s;
-  height: calc(100vh - var(--nav-h) - 10px);
+  height: calc(90vh - var(--nav-h) - 10px);
   position: fixed;
   top: 100vh;
   mask-image: linear-gradient(to bottom, transparent, black 10px);
@@ -245,8 +246,10 @@
 .aboutContainer .aboutPage .introduction {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-evenly;
+  gap: 20px;
 }
 .aboutContainer .aboutPage .introduction .text {
   font-size: 22px;
@@ -258,6 +261,29 @@
 }
 .aboutContainer .aboutPage .introduction .profilePict {
   width: 150px;
+}
+.aboutContainer .aboutPage .introduction .buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+.aboutContainer .aboutPage .introduction .buttons .link {
+  transition: 400ms;
+  border-radius: 2px;
+  margin: 5px;
+  padding: 10px;
+  white-space: nowrap;
+  color: #f1f1f1;
+  text-decoration: none;
+}
+.aboutContainer .aboutPage .introduction .buttons .link.linkedIn {
+  background: #5c82f5;
+}
+.aboutContainer .aboutPage .introduction .buttons .link.github {
+  background: #252525;
+}
+.aboutContainer .aboutPage .introduction .buttons .link:hover {
+  background: rgba(114, 114, 114, 0.94);
 }
 
 #images, #images2 {
@@ -284,17 +310,17 @@
 #images #layer1, #images2 #layer1 {
   aspect-ratio: 16/1;
   width: 110%;
-  left: calc(-3px + var(--shift-layers)/2);
+  left: calc(-3px + var(--shift-layers) / 2);
 }
 #images #layer2, #images2 #layer2 {
   aspect-ratio: 9/1;
   width: 120%;
-  left: calc(-3px + var(--shift-layers)*1);
+  left: calc(-3px + var(--shift-layers) * 1);
 }
 #images #layer3, #images2 #layer3 {
   aspect-ratio: 7/1;
   width: 130%;
-  left: calc(-3px + var(--shift-layers)*2);
+  left: calc(-3px + var(--shift-layers) * 2);
 }
 
 #images {
@@ -310,7 +336,11 @@
     --modal-pad: 15px;
     --nav-filter-h: 100px;
     --shift-project: 400px;
-    --nav-h:50px ;
+    --nav-h: 50px;
+  }
+
+  .App {
+    height: 90vh;
   }
 
   .navContainer {

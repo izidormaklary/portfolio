@@ -3,3 +3,5 @@ env
 .env
 api/__pycache__
 api/migrations/__pycache__
+.DS_Store
+frontend/.DS_Store

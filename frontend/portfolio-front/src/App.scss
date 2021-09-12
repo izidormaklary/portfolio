@@ -11,18 +11,19 @@ $bp-lg: 1600px;
 $bp-md: 1200px;
 $bp-sm: 800px;
 $bp-xsm: 600px;
-$bp-phone: 270px;
+$bp-phone: 400px;
 $nav-align: row;
 :root {
   --nav-bg-font: 55px;
   --project-card-title: 22px;
-  --nav-sm-font: 40px ;
+  --nav-sm-font: 40px;
   --modal-pad: 30px;
-  --modal-width:700px;
-  --about-width:1000px;
-  --nav-filter-h:140px;
-  --nav-h:60px;
+  --modal-width: 700px;
+  --about-width: 1000px;
+  --nav-filter-h: 140px;
+  --nav-h: 60px;
   --shift-project: 200px;
+  --shift-layers:0px;
 }
 
 * {
@@ -34,6 +35,7 @@ body {
 
 }
 
+
 .App {
   overflow: scroll;
   height: 100vh;
@@ -41,11 +43,12 @@ body {
   background: linear-gradient(290deg, rgba(141, 104, 179, 0.41) 0%, rgba(141, 104, 179, 0.12) 100%),
   linear-gradient(70deg, rgba(248, 128, 128, 0.31) 0%, transparent 50%, rgba(127, 158, 204, 0.25) 100%),
   #FFFFFF;
-  
+  //filter: invert(1);
 }
 
 
 .navContainer {
+  height: 100%;
   width: 100%;
   display: flex;
   flex-direction: $nav-align;
@@ -87,7 +90,7 @@ body {
       transition: 0.4s;
       background: rgba(65, 65, 65, 0);
       color: #3e3e3e;
-      font-size:var(--nav-sm-font);
+      font-size: var(--nav-sm-font);
       cursor: pointer;
 
       &:hover {
@@ -101,7 +104,7 @@ body {
 }
 
 .projectsContainer {
-  mask-image: linear-gradient( to bottom, transparent, rgb(0, 0, 0) 10px );
+  mask-image: linear-gradient(to bottom, transparent, rgb(0, 0, 0) 10px);
 
   padding-bottom: 10px;
   //border-top: rgba(0, 0, 0, 0.38) solid 2px;
@@ -117,7 +120,7 @@ body {
   grid-template-columns: repeat(auto-fit, 250px);
   grid-template-rows:  repeat(auto-fill, 240px);
   gap: 50px;
-
+  max-width: 1200px;
   margin-bottom: 180px;
   justify-content: center;
   overflow: scroll;
@@ -176,6 +179,7 @@ body {
   transition: 0.5s;
   position: relative;
   top: 20px;
+  max-width: 1200px;
   right: 10px;
   float: right;
   width: 150px;
@@ -264,7 +268,7 @@ body {
     transition: 0.5s;
     cursor: default;
     padding: var(--modal-pad);
-    width: calc( var(--modal-width) - (2 * var(--modal-pad)) ) ;
+    width: calc(var(--modal-width) - (2 * var(--modal-pad)));
     margin: auto;
     margin-top: 120vh;
     background-color: rgba(255, 255, 255, 0.82);
@@ -290,29 +294,105 @@ body {
   }
 
 }
-.aboutContainer{
+
+.aboutContainer {
   overflow: scroll;
   width: 100vw;
   transition: 0.6s;
-  height:calc(100vh - var(--nav-h) - 10px);
+  height: calc(100vh - var(--nav-h) - 10px);
   position: fixed;
-  top:100vh;
-  mask-image: linear-gradient( to bottom, transparent, rgb(0, 0, 0) 10px );
+  top: 100vh;
+  mask-image: linear-gradient(to bottom, transparent, rgb(0, 0, 0) 10px);
 
-  &.mounted{
-    top:var(--nav-h);
+  &.mounted {
+    top: var(--nav-h);
   }
-  .aboutPage{
+
+  .aboutPage {
+
+    overflow: hidden;
     border-radius: 5px;
 
-    height: 2800px;
+    //height: 2800px;
     background-color: rgba(255, 255, 255, 0.85);
     margin: auto;
     margin-top: 20px;
-    width: var(--about-width);
+    width: 100vw;
+    max-width: var(--about-width);
+    .introduction {
+
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-evenly;
+      .text {
+        font-size: 22px;
+        line-height: 30px;
+        //word-spacing: 5px;
+        vertical-align: center;
+        display: inline-block;
+        margin: 20px;
+        width: 600px;
+      }
+
+      .profilePict {
+        width: 150px;
+
+
+      }
+    }
   }
 
 }
+
+#images, #images2 {
+  border-radius: 0 0 5px 5px;
+  overflow: hidden;
+  width: 100%;
+  position: relative;
+
+  -webkit-aspect-ratio:5/1;
+  aspect-ratio:5/1;
+  left: 0;
+  top: 0;
+  box-sizing: border-box;
+
+
+  .layers {
+
+    transition: 100ms;
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+
+  }
+  #profile_pict{
+    //aspect-ratio:9/1;
+    width: 100px;
+    left:250px;
+  }
+  #layer1{
+    aspect-ratio:16/1;
+    width:110%;
+    left: calc(-3px + var(--shift-layers)/2)
+  }
+  #layer2{
+    aspect-ratio:9/1;
+    width:120%;
+    left: calc(-3px + var(--shift-layers)*1)
+  }
+  #layer3{
+    aspect-ratio:7/1;
+    //bottom: -11%;
+    width:130%;
+    left: calc(-3px + var(--shift-layers)*2);
+  }
+}
+#images{
+  //position: fixed;
+  transform: scaleY(-1);
+}
+
 @media (max-width: $bp-xsm) {
   :root {
     --project-card-title: 20px;
@@ -322,21 +402,29 @@ body {
     --modal-pad: 15px;
     --nav-filter-h: 100px;
     --shift-project: 400px;
+    --nav-h:50px ;
   }
+
+
   .navContainer {
     flex-direction: column;
+    justify-content: space-between;
+    height: 100vh;
 
     .navElement {
       width: 100%;
-      height: (100%/3);
+      flex: 1;
+      //height: ;
+
     }
 
     &.shrink {
-      height: 50px;
+      height: var(--nav-h);
       background: rgba(132, 105, 244, 0.45);
 
       .navElement {
         height: 100%;
+
         &.clickable {
           display: none;
         }
@@ -384,10 +472,12 @@ body {
         text-align: center;
         margin: 20px 0 20px 0;
       }
+
       .modalDesc {
         font-size: 18px;
 
       }
+
       .smallTitle {
         margin: 20px;
 
@@ -399,7 +489,25 @@ body {
     }
   }
 }
+@media (max-width: $bp-phone) {
+  #images{
+    margin-bottom:50%;
 
+  }
+  .aboutContainer{
+    .aboutPage {
+      margin-top: 0 !important;
+    .introduction{
+      margin-top: 100px;
+    }
+    }
+
+
+  }
+  #images2{
+    display:none;
+  }
+}
 @media (min-width: $bp-xsm) and (max-width: $bp-sm) {
   :root {
     --nav-bg-font: 32px;
@@ -408,9 +516,9 @@ body {
     --modal-pad: 15px;
   }
   @media (min-width: 700px) {
-    :root{
+    :root {
       --modal-pad: 30px;
-      --modal-width:700px;
+      --modal-width: 700px;
     }
   }
 }
@@ -418,6 +526,25 @@ body {
 @media(min-width: $bp-sm) and (max-width: $bp-md) {
   :root {
     --nav-sm-font: 32px;
-    --nav-bg-font:  42px;
+    --nav-bg-font: 42px;
   }
 }
+
+@media(min-width: $bp-md) {
+  :root {
+
+  }
+  $m-projects-p: calc((100vw - 1200px) / 2);
+  .projectsContainer {
+    left: $m-projects-p;
+
+  }
+  .tagsContainer {
+    right: $m-projects-p;
+
+    &.active {
+      left: $m-projects-p;
+    }
+  }
+}
+

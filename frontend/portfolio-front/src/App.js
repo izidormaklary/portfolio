@@ -1,4 +1,5 @@
-
+import './fonts/custom_regular.otf';
+import './fonts/custom_bolder.otf';
 import './App.scss';
 import Projects from "./components/Projects";
 import {useState} from "react";

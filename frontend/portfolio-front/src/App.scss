@@ -30,13 +30,21 @@ $nav-align: row;
   margin: 0;
   padding: 0;
 }
-
+@font-face {
+  font-family: "custom_regular";
+  src: local("custom_regular"), url(./fonts/custom_regular.otf) format('opentype');
+}
+@font-face {
+  font-family: "custom_bolder";
+  src: local("custom_bolder"), url(./fonts/custom_bolder.otf) format('opentype');
+}
 body {
 
 }
 
 
 .App {
+  font-family: "custom_regular", sans-serif;
   z-index: -1;
   overflow: hidden;
   height: 100vh;
@@ -57,6 +65,8 @@ body {
   transition: 0.6s;
 
   .navElement {
+    font-family: "custom_bolder", sans-serif;
+
     transition: 0.6s;
     background: rgba(65, 65, 65, 0.2);
     display: flex;
@@ -152,8 +162,11 @@ body {
 
     .projectTitle {
       font-size: var(--project-card-title);
+      font-family: "custom_bolder", sans-serif;
+      font-weight: normal;
+
       margin-top: -15px;
-      padding: 35px 5px 15px 5px;
+      padding: 35px 5px 25px 5px;
       transition: 0.5s;
     }
 
@@ -244,7 +257,19 @@ body {
     }
   }
 }
-
+@mixin buttonContainer{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+@mixin buttons{
+  transition: 400ms;
+  border-radius: 2px;
+  margin: 5px;
+  padding: 10px;
+  white-space: nowrap;
+  text-decoration: none;
+}
 .modalContainer {
   overflow-x: scroll;
   transition: 0.6s;
@@ -300,7 +325,7 @@ body {
   overflow: scroll;
   width: 100vw;
   transition: 0.6s;
-  height: calc(90vh - var(--nav-h) - 10px);
+  height: calc(100vh - var(--nav-h) - 10px);
   position: fixed;
   top: 100vh;
   mask-image: linear-gradient(to bottom, transparent, rgb(0, 0, 0) 10px);
@@ -344,30 +369,28 @@ body {
         width: 150px;
       }
 
+
       .buttons {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-evenly;
+        @include buttonContainer;
         .link {
-          transition: 400ms;
-          border-radius: 2px;
-          margin: 5px;
-          padding: 10px;
-          white-space: nowrap;
-          color: #f1f1f1;
-          text-decoration: none;
+          @include buttons;
 
           &.linkedIn {
-            background: #5c82f5;
+            border:solid 2px #6976c5;
+            color: #6976c5;
           }
 
           &.github {
-            background: #252525;
+            color: #393737;
+            @mixin gray{
 
+            }
+            border:solid 2px #393737;
           }
 
           &:hover {
-            background: rgba(114, 114, 114, 0.94);
+            //background: rgba(222, 222, 222, 0.94);
+            box-shadow:0 0px 4px black inset;
           }
         }
       }
@@ -387,7 +410,7 @@ body {
   left: 0;
   top: 0;
   box-sizing: border-box;
-
+  filter: hue-rotate(10deg);
 
   .layers {
 
@@ -407,13 +430,14 @@ body {
   #layer1 {
     aspect-ratio: 16/1;
     width: 110%;
-    left: calc(-3px + var(--shift-layers) / 2)
+    left: calc(-3px + var(--shift-layers) / 2);
   }
 
   #layer2 {
     aspect-ratio: 9/1;
     width: 120%;
-    left: calc(-3px + var(--shift-layers) * 1)
+    left: calc(-3px + var(--shift-layers) * 1);
+
   }
 
   #layer3 {
@@ -421,6 +445,11 @@ body {
     //bottom: -11%;
     width: 130%;
     left: calc(-3px + var(--shift-layers) * 2);
+
+  }
+  &>*{
+    filter: drop-shadow(0 -2px 5px rgba(0, 0, 0, 0.42));
+
   }
 }
 
@@ -441,9 +470,7 @@ body {
     --nav-h: 50px;
   }
 
-  .App{
-    height: 90vh;
-  }
+
   .navContainer {
     flex-direction: column;
     justify-content: space-between;
@@ -533,11 +560,13 @@ body {
     margin-bottom: 50%;
 
   }
-
+  .App{
+    height: 90vh;
+  }
   .aboutContainer {
     .aboutPage {
       margin-top: 0 !important;
-
+      padding-bottom: 60px;
       .introduction {
         margin-top: 100px;
       }

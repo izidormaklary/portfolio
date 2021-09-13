@@ -30,7 +30,7 @@ const About = ({aboutStatus, setAboutStatus}) => {
                 </div>
                 <div className={"introduction"}>
                     <p className={"text"}>
-                        Hello! I'm Izidor Maklary a junior web-developer. I enjoy developing both front- and back-end.
+                        Hello, i'm Izidor Maklary a junior web-developer. I enjoy developing both front- and back-end.
                         Of course perfection is in both cases very important for me.
 
                         <br/>I hope you enjoyed looking through
@@ -38,8 +38,8 @@ const About = ({aboutStatus, setAboutStatus}) => {
                     </p>
                     <img className={"profilePict"} src="./resources/profile_pict.png" alt="my profile picture"/>
                     <div className={"buttons"}>
-                        <a className={"linkedIn link"} href="https://www.linkedin.com/in/izidor-maklary" target={"_blank"}>Find my contact details on linkedIn</a>
-                        <a className={"github link"} href="https://github.com/izidormaklary" target={"_blank"}>Take a look at my github</a>
+                        <a className={"linkedIn link"} href="https://www.linkedin.com/in/izidor-maklary" target={"_blank"}>contact details on linkedIn</a>
+                        <a className={"github link"} href="https://github.com/izidormaklary" target={"_blank"}>more projects at github</a>
                     </div>
 
                 </div>

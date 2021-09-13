@@ -7,7 +7,7 @@ const ProjectModal = ({modal, setModal}) => {
     const [modalStatus, setModalStatus] = useState("")
 
     useEffect(() => {
-        axios.get(`/project/${modal}`)
+        axios.get(`http://127.0.0.1:8000/api/project/${modal}`)
             .then(res => {
                 const project = res.data;
                 setProject(project);

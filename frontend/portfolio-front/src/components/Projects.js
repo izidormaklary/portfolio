@@ -13,7 +13,7 @@ const Projects = ({projectStatus, setProjectStatus}) => {
     const [tagStatus, setTagStatus] = useState("")
     const [modal, setModal] = useState("");
     useEffect(() => {
-        axios.get(`http://127.0.0.1:8000/api/projects${tag}`)
+        axios.get(`/api/projects${tag}`)
             .then(res => {
                 const projects = res.data;
                 setProjects(projects);
@@ -24,7 +24,7 @@ const Projects = ({projectStatus, setProjectStatus}) => {
 
     }, [tag]);
     useEffect(() => {
-        axios.get(`http://127.0.0.1:8000/api/tags`)
+        axios.get(`/api/tags`)
             .then(res => {
                 const tags = res.data;
                 setTags(tags);

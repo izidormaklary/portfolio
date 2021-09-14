@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 from pathlib import Path
 import os
 import environ
-
+import django_heroku
 env = environ.Env(
     # set casting, default value
     DEBUG=(bool, False)
@@ -104,6 +104,7 @@ DATABASES = {
 
         'PORT': env('DB_PORT'),
 
+        'CONN_MAX_AGE': 500,
     }
 }
 
@@ -138,8 +139,7 @@ USE_L10N = True
 
 USE_TZ = True
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/3.2/howto/static-files/
+django_heroku.settings(locals())
 
 STATIC_URL = '/static/'
 # STATIC_ROOT = os.path.join(BASE_DIR, "static_files")
@@ -147,9 +147,7 @@ STATICFILES_DIRS = [
     # Tell Django where to look for React's static files (css, js)
     os.path.join(BASE_DIR, "static"),
     os.path.join(BASE_DIR, "build/static"),
-    # os.path.join(BASE_DIR, "build/resources"),
     os.path.join(BASE_DIR, "build"),
-    # os.path.join(BASE_DIR, "build/resources"),
 ]
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field

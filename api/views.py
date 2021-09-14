@@ -18,7 +18,7 @@ class ProjectViewSet(viewsets.ModelViewSet):
 @api_view(['GET'])
 @renderer_classes([JSONRenderer])
 def project_all(request):
-    projects = Project.objects.all()
+    projects = Project.objects.all().order_by('name')
     serializer = ProjectPreviewSerializer(projects, many=True)
     return Response(serializer.data)
 

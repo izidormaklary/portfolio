@@ -7,7 +7,7 @@ const ProjectModal = ({modal, setModal}) => {
     const [modalStatus, setModalStatus] = useState("")
 
     useEffect(() => {
-        axios.get(`http://127.0.0.1:8000/api/project/${modal}`)
+        axios.get(`/api/project/${modal}`)
             .then(res => {
                 const project = res.data;
                 setProject(project);
@@ -29,7 +29,7 @@ const ProjectModal = ({modal, setModal}) => {
             <div className={"modalProject"}
 
             >
-                <img className={"modalCover"} src={project.prev_image} alt=""/>
+                <img className={"modalCover"} src={project.display_image} alt={"image of the "+ project.name+" project"}/>
                 <h1 className={"modalName"}> {project.name}</h1>
                 <div className={"modalDesc"}>
                     {
@@ -50,20 +50,19 @@ const ProjectModal = ({modal, setModal}) => {
                     project.languages ?
                         project.languages.map(lang => {
                             return (
-                                    <span key={lang.percentage}>
-                                        {lang.language} {lang.percentage}%
+                                    <span className={"languages"} key={lang.percentage}>
+                                        {lang.language } {lang.percentage}%
                                     </span>
                             )
                         }) : <></>
                 }
                 <div className={"linkContainer"}>
-                    <a className={"gitLink"} href={project.github_url} target="_blank" rel={"noreferrer"}>Look at the
+                    <a className={"gitLink"} href={project.github_url} target="_blank" rel={"noreferrer"}>
                         code
                         on github</a>
                     {project.host_url
                         ?
-                        <a className={"deployLink"} href={project.host_url} target="_blank" rel={"noreferrer"}>Check out
-                            the
+                        <a className={"deployLink"} href={project.host_url} target="_blank" rel={"noreferrer"}>
                             deployed version</a>
                         : <></>
                     }

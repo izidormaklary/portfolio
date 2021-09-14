@@ -24,6 +24,10 @@
   font-family: "custom_bolder";
   src: local("custom_bolder"), url(./fonts/custom_bolder.otf) format("opentype");
 }
+body {
+  color: #2f2f2f;
+}
+
 .App {
   font-family: "custom_regular", sans-serif;
   z-index: -1;
@@ -117,19 +121,21 @@
 }
 .projectsContainer .projectSmall .previewImage {
   transition: 0.5s;
-  width: 100%;
+  height: 175px;
+  object-fit: cover;
 }
 .projectsContainer .projectSmall .projectTitle {
   font-size: var(--project-card-title);
   font-family: "custom_bolder", sans-serif;
   font-weight: normal;
   margin-top: -15px;
-  padding: 35px 5px 25px 5px;
+  padding: 35px 5px 15px 5px;
   transition: 0.5s;
 }
 .projectsContainer .projectSmall .projectDescription {
   padding: 5px;
   transition: 0.5s;
+  min-height: 30px;
 }
 .projectsContainer .projectSmall:hover {
   border-radius: 10px;
@@ -230,8 +236,48 @@
 .modalContainer .modalProject .modalDesc {
   font-size: 20px;
 }
+.modalContainer .modalProject .modalDesc .descrParagraph {
+  line-height: 24px;
+  margin-bottom: 15px;
+}
 .modalContainer .modalProject .smallTitle {
+  font-family: "custom_bolder", sans-serif;
+  padding: 0;
   margin: 20px;
+  margin-left: 0px;
+  font-weight: normal;
+}
+.modalContainer .modalProject .languages {
+  white-space: nowrap;
+  display: inline-block;
+}
+.modalContainer .modalProject .languages:not(:last-child) {
+  padding-right: 30px;
+}
+.modalContainer .modalProject .linkContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  margin: 10px;
+}
+.modalContainer .modalProject .linkContainer .gitLink, .modalContainer .modalProject .linkContainer .deployLink {
+  transition: 400ms;
+  border-radius: 2px;
+  margin: 5px;
+  padding: 10px;
+  white-space: nowrap;
+  text-decoration: none;
+}
+.modalContainer .modalProject .linkContainer .gitLink:hover, .modalContainer .modalProject .linkContainer .deployLink:hover {
+  box-shadow: 0 0px 4px black inset;
+}
+.modalContainer .modalProject .linkContainer .gitLink.deployLink, .modalContainer .modalProject .linkContainer .deployLink.deployLink {
+  border: solid 2px #6976c5;
+  color: #6976c5;
+}
+.modalContainer .modalProject .linkContainer .gitLink.gitLink, .modalContainer .modalProject .linkContainer .deployLink.gitLink {
+  color: #393737;
+  border: solid 2px #393737;
 }
 
 .aboutContainer {
@@ -247,9 +293,10 @@
   top: var(--nav-h);
 }
 .aboutContainer .aboutPage {
+  padding: 30px 0 30px 0;
   overflow: hidden;
   border-radius: 5px;
-  background-color: rgba(255, 255, 255, 0.85);
+  background-color: rgba(255, 255, 255, 0.79);
   margin: auto;
   margin-top: 20px;
   width: 100vw;
@@ -263,13 +310,19 @@
   justify-content: space-evenly;
   gap: 20px;
 }
-.aboutContainer .aboutPage .introduction .text {
+.aboutContainer .aboutPage .introduction .textContainer {
+  display: inline-block;
+  padding: 20px;
+  width: 600px;
+}
+.aboutContainer .aboutPage .introduction .textContainer .text {
   font-size: 22px;
   line-height: 30px;
   vertical-align: center;
   display: inline-block;
-  margin: 20px;
-  width: 600px;
+}
+.aboutContainer .aboutPage .introduction .textContainer .text:first-child {
+  padding-bottom: 5px;
 }
 .aboutContainer .aboutPage .introduction .profilePict {
   width: 150px;
@@ -287,6 +340,9 @@
   white-space: nowrap;
   text-decoration: none;
 }
+.aboutContainer .aboutPage .introduction .buttons .link:hover {
+  box-shadow: 0 0px 4px black inset;
+}
 .aboutContainer .aboutPage .introduction .buttons .link.linkedIn {
   border: solid 2px #6976c5;
   color: #6976c5;
@@ -294,50 +350,6 @@
 .aboutContainer .aboutPage .introduction .buttons .link.github {
   color: #393737;
   border: solid 2px #393737;
-}
-.aboutContainer .aboutPage .introduction .buttons .link:hover {
-  box-shadow: 0 0px 4px black inset;
-}
-
-#images, #images2 {
-  border-radius: 0 0 5px 5px;
-  overflow: hidden;
-  width: 100%;
-  position: relative;
-  -webkit-aspect-ratio: 5/1;
-  aspect-ratio: 5/1;
-  left: 0;
-  top: 0;
-  box-sizing: border-box;
-  filter: hue-rotate(10deg);
-}
-#images .layers, #images2 .layers {
-  transition: 100ms;
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-}
-#images #profile_pict, #images2 #profile_pict {
-  width: 100px;
-  left: 250px;
-}
-#images #layer1, #images2 #layer1 {
-  aspect-ratio: 16/1;
-  width: 110%;
-  left: calc(-3px + var(--shift-layers) / 2);
-}
-#images #layer2, #images2 #layer2 {
-  aspect-ratio: 9/1;
-  width: 120%;
-  left: calc(-3px + var(--shift-layers) * 1);
-}
-#images #layer3, #images2 #layer3 {
-  aspect-ratio: 7/1;
-  width: 130%;
-  left: calc(-3px + var(--shift-layers) * 2);
-}
-#images > *, #images2 > * {
-  filter: drop-shadow(0 -2px 5px rgba(0, 0, 0, 0.42));
 }
 
 #images {
@@ -354,6 +366,10 @@
     --nav-filter-h: 100px;
     --shift-project: 400px;
     --nav-h: 50px;
+  }
+
+  .aboutContainer > .aboutPage > .introduction > .textContainer {
+    width: 100%;
   }
 
   .navContainer {
@@ -390,7 +406,6 @@
   }
   .projectsContainer .projectSmall .previewImage {
     transition: 0.5s;
-    width: 100%;
   }
 
   .tagsContainer {
@@ -410,15 +425,8 @@
   .modalContainer .modalProject .modalDesc {
     font-size: 18px;
   }
-  .modalContainer .modalProject .smallTitle {
-    margin: 20px;
-  }
 }
 @media (max-width: 400px) {
-  #images {
-    margin-bottom: 50%;
-  }
-
   .App {
     height: 90vh;
   }
@@ -426,13 +434,6 @@
   .aboutContainer .aboutPage {
     margin-top: 0 !important;
     padding-bottom: 60px;
-  }
-  .aboutContainer .aboutPage .introduction {
-    margin-top: 100px;
-  }
-
-  #images2 {
-    display: none;
   }
 }
 @media (min-width: 600px) and (max-width: 800px) {

@@ -10,11 +10,10 @@ def arr_default():
     return ["one", "two"]
 
 
-# Create your models here.
 class Project(models.Model):
     name = models.CharField(max_length=200)
     github_url = models.URLField()
-    host_url = models.URLField()
+    host_url = models.URLField(blank=True, null=True)
     prev_image = models.CharField(max_length=500, null=True)
     display_image = models.CharField(max_length=500, null=True)
     languages = JSONBField(default=list)

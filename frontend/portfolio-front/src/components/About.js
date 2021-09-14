@@ -39,7 +39,7 @@ const About = ({aboutStatus, setAboutStatus}) => {
                             my portfolio. Feel free to contact me, if you are interested in my work.
                         </p>
                     </div>
-                    <img className={"profilePict"} src="/static/resources/profile_pict.png" alt="my profile picture"/>
+                    <img className={"profilePict"} src="/static/resources/profile.jpeg" alt="my profile picture"/>
                     <div className={"buttons"}>
                         <a className={"linkedIn link"} href="https://www.linkedin.com/in/izidor-maklary"
                            target={"_blank"}>contact details on linkedIn</a>

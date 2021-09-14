@@ -148,7 +148,6 @@ USE_L10N = True
 
 USE_TZ = True
 
-django_heroku.settings(locals())
 
 STATIC_URL = 'https://izidor-maklary.herokuapp.com/static/'
 # STATIC_ROOT = os.path.join(BASE_DIR, "static_files")
@@ -162,3 +161,6 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+django_heroku.settings(locals())

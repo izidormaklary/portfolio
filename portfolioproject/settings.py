@@ -150,7 +150,7 @@ USE_TZ = True
 
 
 STATIC_URL = 'https://izidor-maklary.herokuapp.com/static/'
-# STATIC_ROOT = os.path.join(BASE_DIR, "static_files")
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 STATICFILES_DIRS = [
     # Tell Django where to look for React's static files (css, js)
     os.path.join(BASE_DIR, "static"),

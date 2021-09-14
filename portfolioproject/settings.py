@@ -14,6 +14,7 @@ from pathlib import Path
 import os
 import environ
 import django_heroku
+import dj_database_url
 env = environ.Env(
     # set casting, default value
     DEBUG=(bool, False)
@@ -89,24 +90,26 @@ WSGI_APPLICATION = 'portfolioproject.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-
-        'NAME': env('DB_NAME'),
-
-        'USER': env('DB_USER'),
-
-        'PASSWORD': env('DB_PASSWORD'),
-
-        'HOST': env('DB_HOST'),
-
-        'PORT': env('DB_PORT'),
-
-        'CONN_MAX_AGE': 500,
-    }
-}
+# DATABASES = {
+#     'default': {
+#
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#
+#         'NAME': env('DB_NAME'),
+#
+#         'USER': env('DB_USER'),
+#
+#         'PASSWORD': env('DB_PASSWORD'),
+#
+#         'HOST': env('DB_HOST'),
+#
+#         'PORT': env('DB_PORT'),
+#
+#         'CONN_MAX_AGE': 500,
+#     }
+# }
+DATABASES = {}
+DATABASES['default'] = dj_database_url.config(conn_max_age=600)
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators

@@ -88,9 +88,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'portfolioproject.wsgi.application'
 
-# Database
-# https://docs.djangoproject.com/en/3.2/ref/settings/#databases
-
 # DATABASES = {
 #     'default': {
 #
@@ -130,8 +127,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-# Internationalization
-# https://docs.djangoproject.com/en/3.2/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
 
@@ -143,7 +138,6 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 STATIC_URL = 'https://izidor-maklary.herokuapp.com/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 STATICFILES_DIRS = [
@@ -152,10 +146,8 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "build/static"),
     os.path.join(BASE_DIR, "build"),
 ]
-# Default primary key field type
-# https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
+
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
 
 django_heroku.settings(locals())

@@ -36,7 +36,7 @@ const About = ({aboutStatus, setAboutStatus}) => {
                         </p>
                         <p className={"text"}>
                             I hope you enjoyed looking through
-                            my portfolio, if you want me to work for you contact me.
+                            my portfolio. Feel free to contact me, if you are interested in my work.
                         </p>
                     </div>
                     <img className={"profilePict"} src="/static/resources/profile_pict.png" alt="my profile picture"/>

@@ -27,12 +27,12 @@ environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-^e1wqjsu2@2res8sqf3%ef#51cpa5chy2kfzutc-9+c=jpvk0l'
+SECRET_KEY = env('APPLICATION_SECRET')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["https://izidor-maklary.herokuapp.com/"]
 
 # Application definition
 

@@ -230,12 +230,6 @@ body {
   &:hover:not(.active) {
     background-color: rgba(255, 255, 255, 0.92);
   }
-
-  .tagTitle {
-
-    //font-size: 24px;
-  }
-
   .tag, .close {
     overflow: hidden;
     width: 0;
@@ -392,7 +386,6 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
   overflow: scroll;
   width: 100vw;
   transition: 0.6s;
@@ -409,7 +402,6 @@ body {
     padding: 30px 0 30px 0;
 
     border-radius: 5px;
-    //height: 2800px;
     background-color: rgba(255, 255, 255, 0.61);
 
     width: 100vw;
@@ -432,7 +424,6 @@ body {
         .text {
           font-size: 22px;
           line-height: 30px;
-          //word-spacing: 5px;
           vertical-align: center;
           display: inline-block;
 
@@ -441,19 +432,13 @@ body {
           }
         }
       }
-
       .profilePict {
         width: 150px;
       }
-
-
       .buttons {
-
         @include buttonContainer;
-
         .link {
           @include buttons;
-
           &.linkedIn {
             border: solid 2px #6976c5;
             color: #6976c5;
@@ -463,13 +448,10 @@ body {
             color: #393737;
             border: solid 2px #393737;
           }
-
-
         }
       }
     }
   }
-
 }
 
 
@@ -501,8 +483,6 @@ body {
     .navElement {
       width: 100%;
       flex: 1;
-      //height: ;
-
     }
 
     &.shrink {
@@ -543,7 +523,6 @@ body {
     width: 150px;
     background-color: rgba(255, 255, 255, 0.53);
     height: 30px;
-    //border-radius: 15px;
     .tagTitle {
       font-size: 20px;
     }
@@ -572,10 +551,6 @@ body {
 
 @media (max-width: $bp-phone) {
 
-  //#images {
-  //  margin-bottom: 50%;
-  //
-  //}
   :root {
     --shift-project: 450px;
     --full-height: -webkit-fill-available;
@@ -593,9 +568,7 @@ body {
 
 
   }
-  //#images2 {
-  //  display: none;
-  //}
+
 }
 
 @media (min-width: $bp-xsm) and (max-width: $bp-sm) {

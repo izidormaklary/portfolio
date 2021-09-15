@@ -9,7 +9,7 @@ $smallText: 18px;
 $bp-xlg: 1900px;
 $bp-lg: 1600px;
 $bp-md: 1200px;
-$bp-sm: 800px;
+$bp-sm: 820px;
 $bp-xsm: 600px;
 $bp-phone: 400px;
 $nav-align: row;
@@ -21,8 +21,8 @@ $nav-align: row;
   --modal-pad: 30px;
   --modal-width: 700px;
   --about-width: 1000px;
-  --nav-filter-h: 140px;
-  --nav-h: 60px;
+  --nav-filter-h: 160px;
+  --nav-h: 100px;
   --shift-project: 200px;
   --shift-layers: 0px;
 }
@@ -30,21 +30,23 @@ $nav-align: row;
 * {
   margin: 0;
   padding: 0;
+  overflow-x: hidden;
 }
 
 @mixin fullHeight {
   height: 100vh;
-  @media (max-width: $bp-phone) {
+  @media (max-height: $bp-xsm) {
     height: -webkit-fill-available;
     height: -mozkit-fill-available;
     height: fill-available;
+
   }
+
 }
 
-html, body, #root, .App  {
+html, body, #root, .App {
   @include fullHeight;
 }
-
 
 
 @font-face {
@@ -99,7 +101,7 @@ body {
       &:hover {
         box-shadow: 0 0 100px 20px #ffffffa1;
         z-index: 1;
-        background: #42424240;
+        background: rgba(65, 65, 65, 0.2);
       }
     }
   }
@@ -112,11 +114,11 @@ body {
     position: sticky;
     top: 0;
     height: var(--nav-h);
-    //background: rgba(255, 255, 255, 0.45);
+
     .navElement {
       height: 100%;
       transition: 0.4s;
-      background: rgba(65, 65, 65, 0);
+      background: transparent;
       color: #3e3e3e;
       font-size: var(--nav-sm-font);
       cursor: pointer;
@@ -132,16 +134,17 @@ body {
 }
 
 .projectsContainer {
-  mask-image: linear-gradient(to bottom, transparent, rgb(0, 0, 0) 10px);
+  height: calc(100% - var(--nav-filter-h) - 20px);
 
-  padding-bottom: 10px;
+  padding-bottom: 40px;
   //border-top: rgba(0, 0, 0, 0.38) solid 2px;
   transition: 0.6s;
   position: fixed;
   top: 100vh;
-  height: calc(var(--full-height) - 175px);
+
+
   bottom: 0;
-  padding-top: 20px;
+  padding-top: 10px;
   //left: 5%;
   width: 100%;
   display: grid;
@@ -149,9 +152,10 @@ body {
   grid-template-rows:  repeat(auto-fill, 240px);
   gap: 50px;
   max-width: 1200px;
-  margin-bottom: 180px;
+
   justify-content: center;
-  overflow: scroll;
+  overflow-y: scroll;
+  overflow-x: hidden;
 
   &.mounted {
     top: var(--nav-filter-h);
@@ -163,7 +167,7 @@ body {
 
   .projectSmall {
     cursor: pointer;
-    border-radius: 80px 80px 10px 10px;
+    border-radius: 20px 20px 10px 10px;
     background-color: rgba(255, 255, 255, 0.75);
     display: flex;
     flex-direction: column;
@@ -211,7 +215,7 @@ body {
   font-size: 18px;
   transition: 0.5s;
   position: relative;
-  top: 20px;
+  top: 10px;
   max-width: 1200px;
   right: 10px;
   float: right;
@@ -253,8 +257,8 @@ body {
 
     .tag, .close {
       background-color: rgba(255, 255, 255, 0.75);
-      margin: 5px;
-      padding: 8px;
+      margin: 3px;
+      padding: 7px;
       border-radius: 4px;
       opacity: 1;
       cursor: pointer;
@@ -305,6 +309,7 @@ body {
   width: 100vw;
   cursor: w-resize;
   backdrop-filter: blur(0px);
+  overflow-x: hidden;
 
   &.mounted {
     backdrop-filter: blur(6px);
@@ -323,7 +328,7 @@ body {
     width: calc(var(--modal-width) - (2 * var(--modal-pad)));
     margin: auto;
     margin-top: 120vh;
-    background-color: rgba(255, 255, 255, 0.82);
+    background-color: rgba(255, 255, 255, 0.91);
 
     .modalCover {
       width: 100%;
@@ -385,29 +390,29 @@ body {
 }
 
 .aboutContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
   overflow: scroll;
   width: 100vw;
   transition: 0.6s;
-  /*height: calc(var(--full-height) - var(--nav-h) - 10px);*/
 
   position: fixed;
   top: 100vh;
-  mask-image: linear-gradient(to bottom, transparent, rgb(0, 0, 0) 10px);
 
   &.mounted {
-    @include fullHeight;
+    height: calc(100% - var(--nav-h));
     top: var(--nav-h);
   }
 
   .aboutPage {
     padding: 30px 0 30px 0;
 
-    overflow: hidden;
     border-radius: 5px;
     //height: 2800px;
-    background-color: rgba(255, 255, 255, 0.79);
-    margin: auto;
-    margin-top: 20px;
+    background-color: rgba(255, 255, 255, 0.61);
+
     width: 100vw;
     max-width: var(--about-width);
 
@@ -468,64 +473,6 @@ body {
 
 }
 
-//#images, #images2 {
-//  border-radius: 0 0 5px 5px;
-//  overflow: hidden;
-//  width: 100%;
-//  position: relative;
-//
-//  -webkit-aspect-ratio: 5/1;
-//  aspect-ratio: 5/1;
-//  left: 0;
-//  top: 0;
-//  box-sizing: border-box;
-//  filter: hue-rotate(10deg);
-
-//.layers {
-//
-//  transition: 100ms;
-//  position: absolute;
-//  bottom: -2px;
-//  left: 0;
-//
-//}
-
-//#profile_pict {
-//  //aspect-ratio:9/1;
-//  width: 100px;
-//  left: 250px;
-//}
-
-//  #layer1 {
-//    aspect-ratio: 16/1;
-//    width: 110%;
-//    left: calc(-3px + var(--shift-layers) / 2);
-//  }
-//
-//  #layer2 {
-//    aspect-ratio: 9/1;
-//    width: 120%;
-//    left: calc(-3px + var(--shift-layers) * 1);
-//
-//  }
-//
-//  #layer3 {
-//    aspect-ratio: 7/1;
-//    //bottom: -11%;
-//    width: 130%;
-//    left: calc(-3px + var(--shift-layers) * 2);
-//
-//  }
-//  &>*{
-//    filter: drop-shadow(0 -2px 5px rgba(0, 0, 0, 0.42));
-//
-//  }
-//}
-
-#images {
-  //position: fixed;
-  transform: scaleY(-1);
-}
 
 @media (max-width: $bp-xsm) {
   :root {
@@ -535,12 +482,16 @@ body {
     --modal-width: 100%;
     --modal-pad: 15px;
     --nav-filter-h: 100px;
-    --shift-project: 400px;
+    --shift-project: 250px;
     --nav-h: 50px;
   }
 
-  .aboutContainer > .aboutPage > .introduction > .textContainer {
-    width: 100%;
+  .aboutContainer > .aboutPage {
+    margin-top: 45px;
+    .introduction > .textContainer {
+      width: 100%;
+    }
+
   }
 
   .navContainer {
@@ -569,13 +520,12 @@ body {
   }
 
   .projectsContainer {
-    height: calc(var(--full-height) - 145px);
     grid-template-columns: repeat(auto-fit, 250px);
     grid-template-rows:  repeat(auto-fill, 240px);
     gap: 10px;
 
     &.shiftDown {
-      height: calc(var(--full-height) - 450px);
+
     }
 
     .projectSmall {
@@ -589,7 +539,7 @@ body {
   }
 
   .tagsContainer {
-    top: 10px;
+    top: 5px;
     width: 150px;
     background-color: rgba(255, 255, 255, 0.53);
     height: 30px;
@@ -621,18 +571,20 @@ body {
 }
 
 @media (max-width: $bp-phone) {
+
   //#images {
   //  margin-bottom: 50%;
   //
   //}
   :root {
+    --shift-project: 450px;
     --full-height: -webkit-fill-available;
   }
 
   .aboutContainer {
     .aboutPage {
-      margin-top: 0 !important;
-      padding-bottom: 60px;
+      margin-top: 400px;
+      margin-bottom: 60px;
 
     }
 
@@ -649,6 +601,7 @@ body {
     --nav-sm-font: 28px;
     --modal-width: 100%;
     --modal-pad: 15px;
+    --shift-project: 250px;
   }
   @media (min-width: 700px) {
     :root {
@@ -662,6 +615,7 @@ body {
   :root {
     --nav-sm-font: 32px;
     --nav-bg-font: 42px;
+    --shift-project: 210px;
   }
 }
 

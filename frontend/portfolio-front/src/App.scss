@@ -30,7 +30,6 @@ $nav-align: row;
 * {
   margin: 0;
   padding: 0;
-  overflow-x: hidden;
 }
 
 @mixin fullHeight {
@@ -134,7 +133,7 @@ body {
 }
 
 .projectsContainer {
-  height: calc(100% - var(--nav-filter-h) - 20px);
+  height: calc(100% - var(--nav-filter-h) - 60px);
 
   padding-bottom: 40px;
   //border-top: rgba(0, 0, 0, 0.38) solid 2px;

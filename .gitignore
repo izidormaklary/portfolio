@@ -6,3 +6,5 @@ api/migrations/__pycache__
 .DS_Store
 frontend/.DS_Store
 template.json
+db.sqlite3
+portfolioproject/__pycache__/

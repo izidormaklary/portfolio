@@ -14,6 +14,7 @@ $bp-xsm: 600px;
 $bp-phone: 400px;
 $nav-align: row;
 :root {
+  --full-height: 100%;
   --nav-bg-font: 55px;
   --project-card-title: 22px;
   --nav-sm-font: 40px;
@@ -30,6 +31,21 @@ $nav-align: row;
   margin: 0;
   padding: 0;
 }
+
+@mixin fullHeight {
+  height: 100vh;
+  @media (max-width: $bp-phone) {
+    height: -webkit-fill-available;
+    height: -mozkit-fill-available;
+    height: fill-available;
+  }
+}
+
+html, body, #root, .App  {
+  @include fullHeight;
+}
+
+
 
 @font-face {
   font-family: "custom_regular";
@@ -50,7 +66,6 @@ body {
   font-family: "custom_regular", sans-serif;
   z-index: -1;
   overflow: hidden;
-  height: 100vh;
   width: 100vw;
   background: linear-gradient(290deg, rgba(141, 104, 179, 0.41) 0%, rgba(141, 104, 179, 0.12) 100%),
   linear-gradient(70deg, rgba(248, 128, 128, 0.31) 0%, transparent 50%, rgba(127, 158, 204, 0.25) 100%),
@@ -60,7 +75,7 @@ body {
 
 
 .navContainer {
-  height: 100%;
+  @include fullHeight;
   width: 100%;
   display: flex;
   flex-direction: $nav-align;
@@ -69,7 +84,6 @@ body {
 
   .navElement {
     font-family: "custom_regular", sans-serif;
-
     transition: 0.6s;
     background: rgba(65, 65, 65, 0.2);
     display: flex;
@@ -83,16 +97,15 @@ body {
       cursor: pointer;
 
       &:hover {
-
-        box-shadow: #FFFFFF 0 0 100px 20px;
+        box-shadow: 0 0 100px 20px #ffffffa1;
         z-index: 1;
-        background: rgba(65, 65, 65, 0.36);
+        background: #42424240;
       }
     }
   }
 
   &.grow {
-    height: 100%;
+    @include fullHeight;
   }
 
   &.shrink {
@@ -101,6 +114,7 @@ body {
     height: var(--nav-h);
     //background: rgba(255, 255, 255, 0.45);
     .navElement {
+      height: 100%;
       transition: 0.4s;
       background: rgba(65, 65, 65, 0);
       color: #3e3e3e;
@@ -125,7 +139,7 @@ body {
   transition: 0.6s;
   position: fixed;
   top: 100vh;
-  height: calc(100vh - 175px);
+  height: calc(var(--full-height) - 175px);
   bottom: 0;
   padding-top: 20px;
   //left: 5%;
@@ -287,7 +301,7 @@ body {
   transition: 0.6s;
   position: fixed;
   top: 0;
-  height: 100vh;
+  height: var(--full-height);
   width: 100vw;
   cursor: w-resize;
   backdrop-filter: blur(0px);
@@ -374,12 +388,14 @@ body {
   overflow: scroll;
   width: 100vw;
   transition: 0.6s;
-  height: calc(100vh - var(--nav-h) - 10px);
+  /*height: calc(var(--full-height) - var(--nav-h) - 10px);*/
+
   position: fixed;
   top: 100vh;
   mask-image: linear-gradient(to bottom, transparent, rgb(0, 0, 0) 10px);
 
   &.mounted {
+    @include fullHeight;
     top: var(--nav-h);
   }
 
@@ -408,13 +424,15 @@ body {
         display: inline-block;
         padding: 20px;
         width: 600px;
+
         .text {
           font-size: 22px;
           line-height: 30px;
           //word-spacing: 5px;
           vertical-align: center;
           display: inline-block;
-          &:first-child{
+
+          &:first-child {
             padding-bottom: 5px;
           }
         }
@@ -521,14 +539,13 @@ body {
     --nav-h: 50px;
   }
 
-  .aboutContainer>.aboutPage>.introduction>.textContainer {
+  .aboutContainer > .aboutPage > .introduction > .textContainer {
     width: 100%;
   }
 
   .navContainer {
     flex-direction: column;
     justify-content: space-between;
-    height: 100vh;
 
     .navElement {
       width: 100%;
@@ -552,13 +569,13 @@ body {
   }
 
   .projectsContainer {
-    height: calc(100vh - 145px);
+    height: calc(var(--full-height) - 145px);
     grid-template-columns: repeat(auto-fit, 250px);
     grid-template-rows:  repeat(auto-fill, 240px);
     gap: 10px;
 
     &.shiftDown {
-      height: calc(100vh - 450px);
+      height: calc(var(--full-height) - 450px);
     }
 
     .projectSmall {
@@ -608,9 +625,10 @@ body {
   //  margin-bottom: 50%;
   //
   //}
-  .App {
-    height: 90vh;
+  :root {
+    --full-height: -webkit-fill-available;
   }
+
   .aboutContainer {
     .aboutPage {
       margin-top: 0 !important;

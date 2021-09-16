@@ -1,7 +1,5 @@
 import React from 'react';
 import {useState, useEffect} from "react";
-import axios from "axios";
-
 const About = ({aboutStatus, setAboutStatus}) => {
 
     useEffect(() => {
@@ -10,22 +8,7 @@ const About = ({aboutStatus, setAboutStatus}) => {
     }, [])
     return (
         <div className={"aboutContainer " + aboutStatus}>
-            <div className={"aboutPage"}
-                // onMouseMove={(el) => {
-                //     let pos = el.clientX
-                //     if (pos % 3 === 0) {
-                //         document.documentElement.style.setProperty('--shift-layers', -el.clientX / 15 + "px")
-                //
-                //     }
-                // }
-                // }
-            >
-
-                {/*<div id={"images"}>*/}
-                {/*    <img id={"layer3"} className={"layers"} src="/static/resources/layer3.png" alt=""/>*/}
-                {/*    <img id={"layer2"} className={"layers"} src="/static/resources/layer2.png" alt=""/>*/}
-                {/*    <img id={"layer1"} className={"layers"} src="/static/resources/layer1.png" alt=""/>*/}
-                {/*</div>*/}
+            <div className={"aboutPage"}>
                 <div className={"introduction"}>
                     <div className={"textContainer"}>
 
@@ -44,7 +27,7 @@ const About = ({aboutStatus, setAboutStatus}) => {
                         <a className={"linkedIn link"} href="https://www.linkedin.com/in/izidor-maklary"
                            target={"_blank"}>contact details on linkedIn</a>
                         <a className={"github link"} href="https://github.com/izidormaklary" target={"_blank"}>more
-                            projects at github</a>
+                            projects on github</a>
                     </div>
 
                 </div>

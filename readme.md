@@ -1,6 +1,13 @@
+
+
 ## Portfolio
 
     The portfolio project. 
+    
+
+### Deployed version available!
+
+[Click here to see it](https://izidor-maklary.herokuapp.com/)
 
 ### Goals:
 * have a backend that serves api endpoints 
@@ -40,9 +47,9 @@ Fields:
 * description
 
 #### API:
-   * endpoints:
+   * endpoints from .../api:
       * .../project - browsable api, without admin account inaccessible, admin can add new objects to the database here
-      * .../projects - only GET requests, returns a json of all projects serialized data
+      * .../projects - only GET requests, returns a json of all projects (but limited fields) serialized data
       * .../tags - only GET requests, returns an array of all the tags in the database (once each)
       * .../projects/*tag_parameter* - only GET ... , filter objects that are tagged with the parameter, returns the object array.
       * .../project/*id_parameter* - only GET ... , get object with the id
